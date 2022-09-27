@@ -1,0 +1,17 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+.monitorStyle {
+  padding: 5px;
+}
+
+.bgImg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width:15%;
+}
+
