@@ -37,41 +37,14 @@ function Addpage() {
   const [actionlist, setActionList] = useState([]);
   const [error, setError] = useState(false);
   const [effective_date, seteffective_date] = useState(new Date());
+  const [detail_check, setDetail_check] = useState("")
 
-
-  // const currentDate = new Date()
-  // //console.log(currentDate)
-
-  // const difftime = () =>{
-  //   Axios.get("http://localhost:3333/process").then((response) => {
-  //     console.log(response.data[0])
-  //     //if ()
-  //     return response.data[0]
-
-  //   })
-  // }
-  // difftime()
-  // const getProcess = () => {
-  //   Axios.get("http://localhost:3333/process_tb").then((response) => {
-  //     setProcesstb(response.data);
-  //   });
-  // };
-  // useEffect(() => {
-  //   getProcess();
-  // }, []);
 
   const url = "http://localhost:3333/add";
 
   const settingDate = (data) => {
     seteffective_date(data);
   };
-
-  // const handleChange = (e) => {
-  //   const newdata = { ...data };
-  //   newdata[e.target.id] = e.target.value;
-  //   setData(newdata);
-  //   console.log(newdata);
-  // };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -104,6 +77,7 @@ function Addpage() {
         alert_cycle: alert_cycle,
         check_status: check_status,
         pic_check: pic_check,
+        detail_check: detail_check
       })
         .then((res) => {
           setActionList([
@@ -119,10 +93,11 @@ function Addpage() {
               alert_cycle: alert_cycle,
               check_status: check_status,
               pic_check: pic_check,
+              detail_check: detail_check
             },
             console.log(res.data),
             alert("Add Success"),
-            window.location = "/process"
+            window.location = "/album"
           ])
         })
         .catch((error) => {

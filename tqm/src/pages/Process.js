@@ -84,6 +84,7 @@ function Process() {
 
   // Get data from mysql
   const getDataAll = () => {
+    // var url = `http://localhost:3333/process`;
     var url = `http://localhost:3333/process`;
 
     if (search) {
@@ -96,13 +97,6 @@ function Process() {
   useEffect(() => {
     getDataAll();
   }, []);
-  // useEffect(() => {
-  //   fetch("http://localhost:3333/process")
-  //     .then((res) => res.json())
-  //     .then((result) => {
-  //       setItem(result);
-  //     });
-  // }, []);
 
   // Get list process from mysql
   const getProcess = () => {
@@ -159,78 +153,8 @@ function Process() {
     getDataAll();
   };
 
-  // const setID = (alert_cycle) =>{
-  //   console.log(alert_cycle)
-  // }
-
   //Theme Web
   const theme = createTheme();
-
-  // const updatetable = (id) => {
-  //   Axios.put("http://localhost:3333/update_tb", {
-  //     process: newprocess,
-  //     mode: newmode,
-  //     problem_detail: newproblem_detail,
-  //     record_action: newrecord_action,
-  //     pic: newpic,
-  //     section: newsection,
-  //     effective_date: neweffective_date,
-  //     alert_cycle: newalert_cycle,
-  //     id: id,
-  //   }).then((response) => {
-  //     setItem(
-  //       items.map((row) => {
-  //         return row.id == id
-  //           ? {
-  //               id: row.id,
-  //               process: newprocess,
-  //               mode: newmode,
-  //               problem_detail: newproblem_detail,
-  //               record_action: newrecord_action,
-  //               pic: newpic,
-  //               section: newsection,
-  //               effective_date: neweffective_date,
-  //               alert_cycle: newalert_cycle,
-  //             }
-  //           : row;
-  //       })
-  //     );
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   fetchData(1, perPage); //ทุกครั้งที่โหลดหน้า จะเป็นการโหลด page 1
-  // }, []);
-
-  // const fetchData = async (page, per_page) => {
-  //   fetch(`http://localhost:3333/process?page=${page}&per_page=${per_page}`)
-  //     .then((res) => res.json())
-  //     .then(
-  //       (result) => {
-  //         setIsLoaded(true);
-  //         setItem(result);
-  //         setTotalRows(result.idaction);
-  //       },
-  //       (error) => {
-  //         setIsLoaded(true);
-  //         setError(error);
-  //       }
-  //     );
-  // };
-
-  // const handlePageChang = (page) => {
-  //   fetchData(page, perPage);
-  // };
-  // const handlePerRowsChange = async (newPerPage, page) => {
-  //   setPerPage(newPerPage);
-  //   fetchData(page, newPerPage);
-  // };
-
-  // if (error) {
-  //   return <div>Error: {error.message}</div>;
-  // } else if (!isloaded) {
-  //   return <div>Loading...</div>;
-  // } else {
 
   //######################################### U I #########################################//
   return (

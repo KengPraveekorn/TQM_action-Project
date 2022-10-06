@@ -15,6 +15,8 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import Carousels from "./Testss/Carousels";
 import DataPgnt from "./Testss/DataPgnt";
 import './App.css';
+import Ttime from "./function/Ttime";
+import Clock from "./Testss/Clock";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -28,9 +30,11 @@ root.render(
         <Route path="/add" element={<Addpage />} />
         <Route path="/history" element={<History />} />
         <Route path="/process" element={<Process />} />
-        <Route path="/adddate" element={<Datepi countdownTimestampMs={1628454873000}/>} />
-        <Route path="/carousel" element={<Carousels/>} />
+        {/* <Route path="/adddate" element={<Datepi countdownTimestampMs={1628454873000}/>} /> */}
+        {/* <Route path="/carousel" element={<Carousels/>} /> */}
         <Route path="/datapgnt" element={<DataPgnt/>} />
+        {/* <Route path="/ttime" element={<Ttime/>} />
+        <Route path="/clock" element={<Clock/>} /> */}
       </Routes>
     </LocalizationProvider>
   </BrowserRouter>

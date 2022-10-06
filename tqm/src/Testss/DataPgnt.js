@@ -18,7 +18,11 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
-import { bgcolor } from "@mui/system";
+import Avatar from "@mui/material/Avatar";
+import AddCircleSharpIcon from "@mui/icons-material/AddCircleSharp";
+import Typography from "@mui/material/Typography";
+import Stack from "@mui/material/Stack";
+import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 
 const modalStyle = {
   position: "absolute",
@@ -42,9 +46,8 @@ function DataPgnt() {
   const [check_status, setCheck_status] = useState("");
 
   const getProcess = () => {
-    Axios.get("http://localhost:3333/process_status").then((response) => {
+    Axios.get("http://10.51.0.151:3333/process_status").then((response) => {
       setItem(response.data);
-      // console.log(response.data)
     });
   };
   useEffect(() => {
@@ -57,7 +60,7 @@ function DataPgnt() {
 
   const updateStatus = (id, chkStatus, chkPic, chkDetail) => {
     let data = chkDetail + "_" + chkPic + "_" + chkStatus + "_" + id;
-    Axios.get(`http://localhost:3333/update_status/${data}`)
+    Axios.get(`http://10.51.0.151:3333/update_status/${data}`)
       .then((response) => {
         console.log(response);
       })
@@ -80,6 +83,22 @@ function DataPgnt() {
           <Box sx={modalStyle}>
             <Box component="form" noValidate sx={{ mt: 3 }}>
               <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    sx={{
+                      mb: 1,
+                      borderRadius: 2,
+                      bgcolor: "red",
+                      ml: "auto",
+                      mr: "auto",
+                      display: "block",
+                    }}
+                  >
+                    Detail
+                  </Button>
+                </Grid>
                 <Grid item xs={12}>
                   <Box sx={{ minWidth: 120 }}>
                     <FormControl fullWidth>
@@ -190,69 +209,81 @@ function DataPgnt() {
   const actualDate3 = `${currentYear}-${currentMonth}-${old2Date}`; //จัด Format date 2 วันก่อน ตามตาราง
   // console.log(newDate ,"t", currDate, "t",newDate1,"t",actualDate);
 
-  // const setColorTb = (date) => {
-  //   console.log(date);
-  //   if (date === "2022-09-02") {
-  //     return "{backgroundColor:'red'}";
-  //   } else {
-  //     return "{backgroundColor:'blue'}";
-  //   }
-  // };
-
-const bgcolor = 'red';
-
+  const setColorTb = (date) => {
+    if (date == actualDate) {
+      return { backgroundColor: "#b2f7ef" };
+    } else {
+      return { backgroundColor: "#ffaaa5" };
+    }
+  };
 
   return (
     <Box p="5">
       <ThemeProvider theme={theme}>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 650 }} aria-label="simple table">
-            <TableHead sx={{ bgcolor: "#FDF5E6" }}>
+            <TableHead sx={{ bgcolor: "#f8e55a", fontSize: "40px" }}>
               <TableRow>
                 {/* <TableCell align="left">Process</TableCell>
                 <TableCell align="left">Mode</TableCell>
                 <TableCell align="left">Problem Detail</TableCell> */}
-                <TableCell align="left">Record Action</TableCell>
-                <TableCell align="left">Pic</TableCell>
-                <TableCell align="left">Effective Date</TableCell>
+                <TableCell align="left">
+                  <Typography fontSize={"20px"} fontWeight={"600"}>
+                    Record Action
+                  </Typography>
+                </TableCell>
+                <TableCell align="left">
+                  <Typography fontSize={"20px"} fontWeight={"600"}>
+                    PIC
+                  </Typography>
+                </TableCell>
+                <TableCell align="left">
+                  <Typography fontSize={"20px"} fontWeight={"600"}>
+                    Effective Date
+                  </Typography>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {_DATA.currentData().map((post) => {
                 let todaydate = post.effective_date;
                 let stus = post.check_status;
-                let color ;
                 if (
                   todaydate === actualDate ||
                   todaydate === actualDate2 ||
                   todaydate === actualDate3 ||
-                  stus !== 0 
+                  stus !== 0
                 ) {
-                  
                   return (
                     <TableRow
                       key={post.idaction}
                       sx={{
                         "&:last-child td, &:last-child th": { border: 0 },
-                        // bgcolor: "red"
                       }}
                       onClick={() => {
                         showModal(post.idaction);
                         handleOpen();
                       }}
+                      style={setColorTb(todaydate)}
                     >
                       {/* <TableCell align="left">{post.process}</TableCell>
                       <TableCell align="left">{post.mode}</TableCell>
                       <TableCell align="left">{post.problem_detail}</TableCell> */}
-                      <TableCell align="left">{post.record_action}</TableCell>
-                      <TableCell align="left">{post.pic}</TableCell>
-                      <TableCell align="left" >
-                        <div style={{}}>
-                          {post.effective_date} {todaydate === "2022-09-05" ? color= "red" : color='blue'}
-                        </div>
-                        </TableCell>
+                      <TableCell align="left">
+                        <Typography fontSize={"16px"}>
+                          {post.record_action}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="left">
+                        <Typography fontSize={"16px"}>{post.pic}</Typography>
+                      </TableCell>
+                      <TableCell align="left">
+                        <Typography fontSize={"16px"}>
+                          {post.effective_date}
+                        </Typography>
+                      </TableCell>
                     </TableRow>
-                  )
+                  );
                 } else {
                   return null;
                 }

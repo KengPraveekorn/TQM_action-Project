@@ -20,18 +20,6 @@ export const Paginations = ({ postsPerPage, totalPosts, paginate }) => {
   }
 
   return (
-    // <nav>
-    //   <ul className='pagination'>
-    //     {pageNumbers.map((number) => (
-    //       <li key={number} className="page-item" style={style_css} >
-    //         <a onClick={() => paginate(number)} className="page-link"  >
-    //           {number}
-    //         </a>
-    //       </li>
-    //     ))}
-    //   </ul>
-    // </nav>
-
     <Pagination count={pageNumbers.push(Math.ceil(totalPosts / postsPerPage))} 
       color="primary"
     />
